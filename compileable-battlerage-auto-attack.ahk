@@ -2,7 +2,7 @@ DirCreate "voice"
 
 FileInstall "voice\the_script_is_resumed.mp3", A_WorkingDir "\voice\the_script_is_resumed.mp3",1
 FileInstall "voice\the_script_is_suspended.mp3", A_WorkingDir "\voice\the_script_is_suspended.mp3",1
-FileInstall "voice\start_attact.mp3.mp3", A_WorkingDir "\voice\start_attact.mp3.mp3",1
+FileInstall "voice\start_attact.mp3", A_WorkingDir "\voice\start_attactmp3",1
 FileInstall "voice\quit_auto_attack_mode.mp3", A_WorkingDir "\voice\quit_auto_attack_mode.mp3",1
 FileInstall "voice\an_enemy_has_been_slayed.mp3", A_WorkingDir "\voice\an_enemy_has_been_slayed.mp3",1
 FileInstall "voice\you_have_been_slain.mp3", A_WorkingDir "\voice\you_have_been_slain.mp3",1
@@ -31,7 +31,7 @@ threshold := "|<>*154$159.200000000000000000000000000M000600000U0U000000000000U3
 {
     SoundPlay A_WorkingDir "\voice\start_attact.mp3.mp3"
 
-    start_attact.mp3_time := A_TickCount
+    start_time := A_TickCount
 
     Loop {
         if (A_IsSuspended){
@@ -53,7 +53,7 @@ threshold := "|<>*154$159.200000000000000000000000000M000600000U0U000000000000U3
                 Sleep(1000)
             }
 
-            elapsed_time := A_TickCount - start_attact.mp3_time
+            elapsed_time := A_TickCount - start_time
 
             if (elapsed_time > 20000)  {
                 SoundPlay A_WorkingDir "\voice\an_enemy_has_been_slayed.mp3"
