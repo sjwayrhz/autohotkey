@@ -36,7 +36,7 @@ Trigger() {
     }
 }
 
-checkKeyAction(key, sendKey, sleepTime, isJump) {
+checkKeyAction(key, sendKey, sleepTime) {
     if (!isRunning) {
         return false
     }
@@ -44,10 +44,6 @@ checkKeyAction(key, sendKey, sleepTime, isJump) {
     if (capture) {
         Send sendKey
         Sleep sleepTime
-        if (isJump) {
-            Sleep 500
-            Send "{Space}"
-        }
         return true
     }
     return false
@@ -64,6 +60,7 @@ Searching() {
 Fishing() {
     static fish_died_status := false
     fish_died_status := false  ; 重置状态
+    last_key123_time := 0  ; 记录最后一次按下 key1, key2, 或 key3 的时间
 
     while (isRunning) {
         ; 检查鱼是否死亡
@@ -74,26 +71,38 @@ Fishing() {
             break
         }
 
-        ; 各种钓鱼动作
-        if (checkKeyAction(key5, "{Numpad8}", 4000, false)) {
+        current_time := A_TickCount
+
+        ; 处理 key4 和 key5（优先处理）
+        if (checkKeyAction(key5, "{Numpad8}", 4000)) {
             ToolTip("Key5 action triggered")
             SetTimer () => ToolTip(), -1000
+            continue  ; 跳到下一次循环
         }
-        if (checkKeyAction(key4, "{Numpad7}", 4000, false)) {
+        if (checkKeyAction(key4, "{Numpad7}", 4000)) {
             ToolTip("Key4 action triggered")
             SetTimer () => ToolTip(), -1000
+            continue  ; 跳到下一次循环
         }
-        if (checkKeyAction(key3, "{Numpad5}", 2000, true)) {
-            ToolTip("Key3 action triggered")
-            SetTimer () => ToolTip(), -1000
-        }
-        if (checkKeyAction(key2, "{Numpad6}", 2000, true)) {
-            ToolTip("Key2 action triggered")
-            SetTimer () => ToolTip(), -1000
-        }
-        if (checkKeyAction(key1, "4", 2000, true)) {
-            ToolTip("Key1 action triggered")
-            SetTimer () => ToolTip(), -1000
+
+        ; 处理 key1, key2, 和 key3
+        if (current_time - last_key123_time > 20000) {  ; 如果距离上次按键超过20秒
+            if (checkKeyAction(key3, "{Numpad5}", 0)) {
+                Send "{Space}"
+                last_key123_time := current_time
+                ToolTip("Key3 action triggered")
+                SetTimer () => ToolTip(), -1000
+            } else if (checkKeyAction(key2, "{Numpad6}", 0)) {
+                Send "{Space}"
+                last_key123_time := current_time
+                ToolTip("Key2 action triggered")
+                SetTimer () => ToolTip(), -1000
+            } else if (checkKeyAction(key1, "4", 0)) {
+                Send "{Space}"
+                last_key123_time := current_time
+                ToolTip("Key1 action triggered")
+                SetTimer () => ToolTip(), -1000
+            }
         }
 
         Sleep 100  ; 添加短暂延迟，避免过度消耗 CPU
