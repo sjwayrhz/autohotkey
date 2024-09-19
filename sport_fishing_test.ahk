@@ -75,13 +75,9 @@ Fishing() {
 
         ; 处理 key4 和 key5（优先处理）
         if (checkKeyAction(key5, "{Numpad8}", 4000)) {
-            ToolTip("Key5 action triggered")
-            SetTimer () => ToolTip(), -1000
             continue  ; 跳到下一次循环
         }
         if (checkKeyAction(key4, "{Numpad7}", 4000)) {
-            ToolTip("Key4 action triggered")
-            SetTimer () => ToolTip(), -1000
             continue  ; 跳到下一次循环
         }
 
@@ -90,18 +86,12 @@ Fishing() {
             if (checkKeyAction(key3, "{Numpad5}", 0)) {
                 Send "{Space}"
                 last_key123_time := current_time
-                ToolTip("Key3 action triggered")
-                SetTimer () => ToolTip(), -1000
             } else if (checkKeyAction(key2, "{Numpad6}", 0)) {
                 Send "{Space}"
                 last_key123_time := current_time
-                ToolTip("Key2 action triggered")
-                SetTimer () => ToolTip(), -1000
             } else if (checkKeyAction(key1, "4", 0)) {
                 Send "{Space}"
                 last_key123_time := current_time
-                ToolTip("Key1 action triggered")
-                SetTimer () => ToolTip(), -1000
             }
         }
 
