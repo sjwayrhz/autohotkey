@@ -101,6 +101,7 @@ Fishing() {
     fish_died_status := false  ; 重置状态
     last_key123_time := 0  ; 记录最后一次按下 key1, key2, 或 key3 的时间
     key_icon_appear_time := 0  ; 重置图标出现时间
+    ;global x1, y1, x2, y2, x3, y3, x4, y4
 
     while (activeFunction == "fishing") {
         ; 检查鱼是否死亡
@@ -114,12 +115,12 @@ Fishing() {
         current_time := A_TickCount
 
         ; 同时检测 key4 和 key5
-        if (FindText(&X1, &Y1, x1, y1, x2, y2, 0.2, 0.2, key4) || FindText(&X1, &Y1, x1, y1, x2, y2, 0.2, 0.2, key5)) {
-            if (FindText(&X1, &Y1, x1, y1, x2, y2, 0.2, 0.2, key5)) {
+        if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key4) || FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
+            if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
                 Send "{Numpad8}"
                 Sleep 4000
             }
-            if (FindText(&X1, &Y1, x1, y1, x2, y2, 0.2, 0.2, key4)) {
+            if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key4)) {
                 Send "{Numpad7}"
                 Sleep 3000
             }
@@ -143,25 +144,22 @@ Fishing() {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
                 Send "{Numpad5}"
                 Sleep 200
-                Send "{Space down}"
+                Send "{Space}"
                 Sleep 800
-                Send "{Space up}"
                 last_key123_time := current_time
                 continue
             } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key2)) {
                 Send "{Numpad6}"
                 Sleep 200
-                Send "{Space down}"
+                Send "{Space}"
                 Sleep 800
-                Send "{Space up}"
                 last_key123_time := current_time
                 continue
             } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key1)) {
                 Send "{Numpad4}"
                 Sleep 200
-                Send "{Space down}"
+                Send "{Space}"
                 Sleep 800
-                Send "{Space up}"
                 last_key123_time := current_time
                 continue
             }
