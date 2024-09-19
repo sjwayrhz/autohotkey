@@ -35,7 +35,7 @@ ToggleShipAutoRun() {
         StopActiveFunction()
         activeFunction := "shipautorun"
         SetTimer(ShipAutoRunTrigger, 1000)
-        ToolTip("另一种方法已启动")
+        ToolTip("船舶自动加速已启动")
         SetTimer(() => ToolTip(), -2000)
     }
 }
@@ -91,7 +91,7 @@ checkKeyAction(key, sendKey, sleepTime) {
     if (activeFunction != "fishing") {
         return false
     }
-    local capture := FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key)
+    local capture := FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key)
     if (capture) {
         Send sendKey
         Sleep sleepTime
@@ -134,14 +134,14 @@ Fishing() {
         }
 
         ; 处理 key1, key2, 和 key3
-        if (current_time - last_key123_time > 20000) {  ; 如果距离上次按键超过20秒
-            if (checkKeyAction(key3, "{Numpad5}", 0)) {
+        if (current_time - last_key123_time > 5000) {  ; 如果距离上次按键超过5秒
+            if (checkKeyAction(key3, "{Numpad5}", 500)) {
                 Send "{Space}"
                 last_key123_time := current_time
-            } else if (checkKeyAction(key2, "{Numpad6}", 0)) {
+            } else if (checkKeyAction(key2, "{Numpad6}", 500)) {
                 Send "{Space}"
                 last_key123_time := current_time
-            } else if (checkKeyAction(key1, "4", 0)) {
+            } else if (checkKeyAction(key1, "{Numpad4}", 500)) {
                 Send "{Space}"
                 last_key123_time := current_time
             }
