@@ -11,6 +11,7 @@
 
 ; 全局变量
 global activeFunction := "none"  ; 可能的值: "none", "fishing", "shipautorun"
+global key_icon_appear_time := 0
 
 ; 切换钓鱼脚本状态的函数
 ToggleFishing() {
@@ -109,10 +110,11 @@ Searching() {
 }
 
 Fishing() {
-    global activeFunction
+    global activeFunction, key_icon_appear_time
     static fish_died_status := false
     fish_died_status := false  ; 重置状态
     last_key123_time := 0  ; 记录最后一次按下 key1, key2, 或 key3 的时间
+    key_icon_appear_time := 0  ; 重置图标出现时间
 
     while (activeFunction == "fishing") {
         ; 检查鱼是否死亡
@@ -125,25 +127,40 @@ Fishing() {
 
         current_time := A_TickCount
 
+        ; 检查是否有任何图标出现
+        if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key1) ||
+            FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key2) ||
+            FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
+            if (key_icon_appear_time == 0) {
+                key_icon_appear_time := current_time
+            }
+        } else {
+            key_icon_appear_time := 0  ; 如果没有图标，重置时间
+        }
+
         ; 处理 key4 和 key5（优先处理）
-        if (checkKeyAction(key5, "{Numpad8}", 4000)) {
+        if (checkKeyAction(key5, "{Numpad8}", 4250)) {
             continue  ; 跳到下一次循环
         }
-        if (checkKeyAction(key4, "{Numpad7}", 4000)) {
+        if (checkKeyAction(key4, "{Numpad7}", 4250)) {
             continue  ; 跳到下一次循环
         }
 
         ; 处理 key1, key2, 和 key3
-        if (current_time - last_key123_time > 5000) {  ; 如果距离上次按键超过5秒
-            if (checkKeyAction(key3, "{Numpad5}", 500)) {
+        if (current_time - last_key123_time > 4500 && key_icon_appear_time != 0 && current_time - key_icon_appear_time <=
+            1500) {
+            if (checkKeyAction(key3, "{Numpad5}", 1000)) {
                 Send "{Space}"
                 last_key123_time := current_time
-            } else if (checkKeyAction(key2, "{Numpad6}", 500)) {
+                continue
+            } else if (checkKeyAction(key2, "{Numpad6}", 1000)) {
                 Send "{Space}"
                 last_key123_time := current_time
-            } else if (checkKeyAction(key1, "{Numpad4}", 500)) {
+                continue
+            } else if (checkKeyAction(key1, "{Numpad4}", 1000)) {
                 Send "{Space}"
                 last_key123_time := current_time
+                continue
             }
         }
 
