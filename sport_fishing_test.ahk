@@ -87,20 +87,6 @@ ShipAutoRunTrigger() {
     }
 }
 
-checkKeyAction(key, sendKey, sleepTime) {
-    global activeFunction
-    if (activeFunction != "fishing") {
-        return false
-    }
-    local capture := FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key)
-    if (capture) {
-        Send sendKey
-        Sleep sleepTime
-        return true
-    }
-    return false
-}
-
 Searching() {
     global activeFunction
     if (activeFunction != "fishing") {
@@ -127,6 +113,22 @@ Fishing() {
 
         current_time := A_TickCount
 
+        ; 同时检测 key4 和 key5
+        key4_found := FindText(&X1, &Y1, x1, y1, x2, y2, 0.2, 0.2, key4)
+        key5_found := FindText(&X2, &Y2, x1, y1, x2, y2, 0.2, 0.2, key5)
+
+        if (key4_found || key5_found) {
+            if (key5_found) {
+                Send "{Numpad8}"
+                Sleep 4000
+            }
+            if (key4_found) {
+                Send "{Numpad7}"
+                Sleep 3000
+            }
+            continue
+        }
+
         ; 检查是否有任何图标出现
         if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key1) ||
             FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key2) ||
@@ -138,26 +140,24 @@ Fishing() {
             key_icon_appear_time := 0  ; 如果没有图标，重置时间
         }
 
-        ; 处理 key4 和 key5（优先处理）
-        if (checkKeyAction(key5, "{Numpad8}", 4250)) {
-            continue  ; 跳到下一次循环
-        }
-        if (checkKeyAction(key4, "{Numpad7}", 4250)) {
-            continue  ; 跳到下一次循环
-        }
-
         ; 处理 key1, key2, 和 key3
         if (current_time - last_key123_time > 4500 && key_icon_appear_time != 0 && current_time - key_icon_appear_time <=
-            1500) {
-            if (checkKeyAction(key3, "{Numpad5}", 1000)) {
+            1000) {
+            if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
+                Send "{Numpad5}"
+                Sleep 500
                 Send "{Space}"
                 last_key123_time := current_time
                 continue
-            } else if (checkKeyAction(key2, "{Numpad6}", 1000)) {
+            } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key2)) {
+                Send "{Numpad6}"
+                Sleep 500
                 Send "{Space}"
                 last_key123_time := current_time
                 continue
-            } else if (checkKeyAction(key1, "{Numpad4}", 1000)) {
+            } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key1)) {
+                Send "{Numpad4}"
+                Sleep 500
                 Send "{Space}"
                 last_key123_time := current_time
                 continue
