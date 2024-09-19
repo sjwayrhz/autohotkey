@@ -114,15 +114,12 @@ Fishing() {
         current_time := A_TickCount
 
         ; 同时检测 key4 和 key5
-        key4_found := FindText(&X1, &Y1, x1, y1, x2, y2, 0.2, 0.2, key4)
-        key5_found := FindText(&X2, &Y2, x1, y1, x2, y2, 0.2, 0.2, key5)
-
-        if (key4_found || key5_found) {
-            if (key5_found) {
+        if (FindText(&X1, &Y1, x1, y1, x2, y2, 0.2, 0.2, key4) || FindText(&X1, &Y1, x1, y1, x2, y2, 0.2, 0.2, key5)) {
+            if (FindText(&X1, &Y1, x1, y1, x2, y2, 0.2, 0.2, key5)) {
                 Send "{Numpad8}"
                 Sleep 4000
             }
-            if (key4_found) {
+            if (FindText(&X1, &Y1, x1, y1, x2, y2, 0.2, 0.2, key4)) {
                 Send "{Numpad7}"
                 Sleep 3000
             }
@@ -145,20 +142,26 @@ Fishing() {
             1000) {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
                 Send "{Numpad5}"
-                Sleep 500
-                Send "{Space}"
+                Sleep 200
+                Send "{Space down}"
+                Sleep 800
+                Send "{Space up}"
                 last_key123_time := current_time
                 continue
             } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key2)) {
                 Send "{Numpad6}"
-                Sleep 500
-                Send "{Space}"
+                Sleep 200
+                Send "{Space down}"
+                Sleep 800
+                Send "{Space up}"
                 last_key123_time := current_time
                 continue
             } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key1)) {
                 Send "{Numpad4}"
-                Sleep 500
-                Send "{Space}"
+                Sleep 200
+                Send "{Space down}"
+                Sleep 800
+                Send "{Space up}"
                 last_key123_time := current_time
                 continue
             }
