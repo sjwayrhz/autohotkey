@@ -21,6 +21,7 @@ ToggleFishing() {
         StopActiveFunction()
         activeFunction := "fishing"
         SetTimer(FishingTrigger, 1000)
+        SoundPlay "voice\start_fishing.mp3"
         ToolTip("钓鱼脚本已启动")
         SetTimer(() => ToolTip(), -2000)
     }
@@ -35,6 +36,7 @@ ToggleShipAutoRun() {
         StopActiveFunction()
         activeFunction := "shipautorun"
         SetTimer(ShipAutoRunTrigger, 1000)
+        SoundPlay "voice\start_ship_accelerate.mp3"
         ToolTip("船舶自动加速已启动")
         SetTimer(() => ToolTip(), -2000)
     }
@@ -46,8 +48,9 @@ StopActiveFunction() {
     SetTimer(FishingTrigger, 0)
     SetTimer(ShipAutoRunTrigger, 0)
     activeFunction := "none"
-    ToolTip("所有功能已停止")
+    ToolTip("脚本已暂停")
     SetTimer(() => ToolTip(), -2000)
+    SoundPlay "voice\the_script_is_paused.mp3"
 }
 
 ; 钓鱼功能的触发器
@@ -113,7 +116,7 @@ Fishing() {
         if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4) || FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
                 Send "{Numpad8}"
-                Sleep 4000
+                Sleep 4500
             }
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4)) {
                 Send "{Numpad7}"
