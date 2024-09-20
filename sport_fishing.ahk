@@ -11,7 +11,6 @@
 
 ; 全局变量
 global activeFunction := "none"  ; 可能的值: "none", "fishing", "shipautorun"
-global key_icon_appear_time := 0
 
 ; 切换钓鱼脚本状态的函数
 ToggleFishing() {
@@ -102,43 +101,30 @@ Fishing() {
     last_key123_time := 0  ; 记录最后一次按下 key1, key2, 或 key3 的时间
 
     while (activeFunction == "fishing") {
-        ; 检查鱼是否死亡
-        capture_fish_died := FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_died)
-        if (capture_fish_died && !fish_died_status) {
-            SoundPlay "voice\an_enemy_has_been_slayed.mp3"
-            fish_died_status := true
-            break
-        }
-
         current_time := A_TickCount
 
         ; 同时检测 key4 和 key5
-        if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key4) || FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
+        if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4) || FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
                 Send "{Numpad8}"
                 Sleep 4000
             }
-            if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key4)) {
+            if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4)) {
                 Send "{Numpad7}"
-                Sleep 1000
+                Sleep 2000
+            }
+            ; 检查鱼是否死亡
+            capture_fish_died := FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_died)
+            if (capture_fish_died && !fish_died_status) {
+                SoundPlay "voice\an_enemy_has_been_slayed.mp3"
+                fish_died_status := true
+                break
             }
             continue
         }
 
-        ; 检查是否有任何图标出现
-        if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key1) ||
-            FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key2) ||
-            FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
-            if (key_icon_appear_time == 0) {
-                key_icon_appear_time := current_time
-            }
-        } else {
-            key_icon_appear_time := 0  ; 如果没有图标，重置时间
-        }
-
         ; 处理 key1, key2, 和 key3
-        if (current_time - last_key123_time > 4400 && key_icon_appear_time != 0 && current_time - key_icon_appear_time <=
-            1000) {
+        if (current_time - last_key123_time > 3800) {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
                 Send "{Numpad5}"
                 Sleep 600
