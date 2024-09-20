@@ -96,12 +96,10 @@ Searching() {
 }
 
 Fishing() {
-    global activeFunction, key_icon_appear_time
+    global activeFunction
     static fish_died_status := false
     fish_died_status := false  ; 重置状态
     last_key123_time := 0  ; 记录最后一次按下 key1, key2, 或 key3 的时间
-    key_icon_appear_time := 0  ; 重置图标出现时间
-    ;global x1, y1, x2, y2, x3, y3, x4, y4
 
     while (activeFunction == "fishing") {
         ; 检查鱼是否死亡
