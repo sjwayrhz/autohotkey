@@ -115,22 +115,22 @@ Fishing() {
         current_time := A_TickCount
 
         ; 同时检测 key4 和 key5
-        if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key4) || FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
-            if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
+        if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4) || FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key5)) {
+            if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key5)) {
                 Send "{Numpad8}"
-                Sleep 4000
+                Sleep 4200
             }
-            if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key4)) {
+            if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4)) {
                 Send "{Numpad7}"
-                Sleep 3000
+                Sleep 3800
             }
             continue
         }
 
         ; 检查是否有任何图标出现
-        if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key1) ||
-            FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key2) ||
-            FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
+        if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key1) ||
+            FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key2) ||
+            FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key3)) {
             if (key_icon_appear_time == 0) {
                 key_icon_appear_time := current_time
             }
@@ -139,27 +139,24 @@ Fishing() {
         }
 
         ; 处理 key1, key2, 和 key3
-        if (current_time - last_key123_time > 4500 && key_icon_appear_time != 0 && current_time - key_icon_appear_time <=
+        if (current_time - last_key123_time > 4300 && key_icon_appear_time != 0 && current_time - key_icon_appear_time <=
             1000) {
-            if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
+            if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key3)) {
                 Send "{Numpad5}"
-                Sleep 200
+                Sleep 600
                 Send "{Space}"
-                Sleep 800
                 last_key123_time := current_time
                 continue
-            } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key2)) {
+            } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key2)) {
                 Send "{Numpad6}"
-                Sleep 200
+                Sleep 600
                 Send "{Space}"
-                Sleep 800
                 last_key123_time := current_time
                 continue
-            } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key1)) {
+            } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key1)) {
                 Send "{Numpad4}"
-                Sleep 200
+                Sleep 600
                 Send "{Space}"
-                Sleep 800
                 last_key123_time := current_time
                 continue
             }
