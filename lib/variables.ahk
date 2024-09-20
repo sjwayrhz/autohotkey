@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 
-; 热键: 当按下Esc键时，退出脚本
-Esc:: ExitApp
+; 热键: 当按下ctrl+0键时，退出脚本
+^0:: ExitApp
 
 ; Key definitions
 key5 :=
@@ -20,6 +20,7 @@ key1 :=
 DirCreate "voice"
 FileInstall "voice\the_script_is_resumed.mp3", A_WorkingDir "\voice\the_script_is_resumed.mp3", 1
 FileInstall "voice\the_script_is_suspended.mp3", A_WorkingDir "\voice\the_script_is_suspended.mp3", 1
+FileInstall "voice\already_hooked.mp3", A_WorkingDir "\voice\already_hooked.mp3", 1
 FileInstall "voice\pink_marlin.mp3", A_WorkingDir "\voice\pink_marlin.mp3", 1
 FileInstall "voice\an_enemy_has_been_slayed.mp3", A_WorkingDir "\voice\an_enemy_has_been_slayed.mp3", 1
 

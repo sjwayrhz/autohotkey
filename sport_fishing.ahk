@@ -6,7 +6,7 @@
 ; 热键: 按下ctrl+1键来切换脚本的启动和停止
 ^1:: ToggleFishing()
 
-; 热键: 按下ctrl+2键来执行另一种方法
+; 热键: 按下ctrl+2键来执行船舶自动加速
 ^2:: ToggleShipAutoRun()
 
 ; 全局变量
@@ -26,7 +26,7 @@ ToggleFishing() {
     }
 }
 
-; 切换另一种方法状态的函数
+; 切换船舶自动加速状态的函数
 ToggleShipAutoRun() {
     global activeFunction
     if (activeFunction == "shipautorun") {
@@ -91,13 +91,19 @@ Searching() {
     if (activeFunction != "fishing") {
         return
     }
-    ; 在这里添加搜索逻辑
+    loop {
+        if (FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_spawn)) {
+            SoundPlay "voice\already_hooked.mp3"
+            break
+        }
+        Sleep 1000
+    }
 }
 
 Fishing() {
     global activeFunction
     static fish_died_status := false
-    fish_died_status := false  ; 重置状态
+    ;fish_died_status := false  ; 重置状态
     last_key123_time := 0  ; 记录最后一次按下 key1, key2, 或 key3 的时间
 
     while (activeFunction == "fishing") {
@@ -114,10 +120,8 @@ Fishing() {
                 Sleep 2000
             }
             ; 检查鱼是否死亡
-            capture_fish_died := FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_died)
-            if (capture_fish_died && !fish_died_status) {
+            if (FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_died)) {
                 SoundPlay "voice\an_enemy_has_been_slayed.mp3"
-                fish_died_status := true
                 break
             }
             continue
