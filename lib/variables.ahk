@@ -7,7 +7,8 @@ Esc:: ExitApp
 key5 :=
     "|<>*104$28.z1zszlnzDzDbxzs3rjzVyBzy1kTzw60zzkk1zza07zzrUDzymCTzu9zzzugDzz+rzztj6zzUT9zznazzzf7z0bbw0087w00UTs42N604DwM00tk0U"
 key4 :=
-    "|<>*108$27.zy0Lzk00Ts081zkPMDwQ1kz6837XW0ANdU9nMRnWCLTA9WjaFAJYy83cjs2TLVQkmxzaKrXimUT8SDbBUlywS66TzsoMHzyUlzzq1wASk31SyHYL7tsIVza3dzykDzU"
+    "|<>*108$26.zy0rzU00zk0U7y3T1z70QDX41XXX2AHH0HZdzC8mztV8iNYGP6T43pAH4vTQv43nSnxyRwjTq75rlkljzyBAzjvFVjzo7TzxUT3Dv3UjyHYLDnkh3ysCbzw1zs"
+
 key3 :=
     "|<>*115$28.0000A2000kz0097D000QD200UDs030Dk04QTY0TtjM0Abns1Wzgk6f3v0mxxs3PlvkM7nj0wtjS1vlyy0tzzw03zxM00zVY01zzks1zrzPXDzkzUU"
 key2 :=
