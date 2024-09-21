@@ -3,26 +3,29 @@
 #Include <FindText>
 #Include <variables>
 
-; 热键: 按下ctrl+1键来切换脚本的启动和停止
-^1:: ToggleFishing()
+; 热键: 按下ctrl+1键来切换default脚本的启动和停止
+^1:: ToggleFishing("default")
 
 ; 热键: 按下ctrl+2键来执行船舶自动加速
 ^2:: ToggleShipAutoRun()
 
+; 热键: 按下ctrl+3键来切换mirage脚本的启动和停止
+^3:: ToggleFishing("mirage")
+
 ; 全局变量
 global activeFunction := "none"  ; 可能的值: "none", "fishing", "shipautorun"
 
-; 切换钓鱼脚本状态的函数
-ToggleFishing() {
+; 钓鱼脚本状态的函数
+ToggleFishing(method := "default") {
     global activeFunction
-    if (activeFunction == "fishing") {
+    if (activeFunction == "fishing_" . method) {
         StopActiveFunction()
     } else {
         StopActiveFunction()
-        activeFunction := "fishing"
+        activeFunction := "fishing_" . method
         SetTimer(FishingTrigger, 1000)
         SoundPlay "voice\start_fishing.mp3"
-        ToolTip("钓鱼脚本已启动")
+        ToolTip(method == "default" ? "默认钓鱼脚本已启动" : "海市蜃楼钓鱼脚本已启动")
         SetTimer(() => ToolTip(), -2000)
     }
 }
@@ -56,11 +59,11 @@ StopActiveFunction() {
 ; 钓鱼功能的触发器
 FishingTrigger() {
     global activeFunction
-    if (activeFunction != "fishing") {
+    if (activeFunction != "fishing_default" && activeFunction != "fishing_mirage") {
         return
     }
     if (FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_spawn)) {
-        Fishing()
+        Fishing(activeFunction == "fishing_mirage")
     } else {
         Searching()
     }
@@ -91,7 +94,7 @@ ShipAutoRunTrigger() {
 
 Searching() {
     global activeFunction
-    if (activeFunction != "fishing") {
+    if (activeFunction != "fishing_default" && activeFunction != "fishing_mirage") {
         return
     }
     loop {
@@ -99,53 +102,54 @@ Searching() {
             SoundPlay "voice\already_hooked.mp3"
             break
         }
+        if (FindText(&X, &Y, 786, 914, 1130, 932, 0.1, 0.1, fish_spawn)) {
+            SoundPlay "voice\pink_marlin.mp3"
+        }
         Sleep 1000
     }
 }
 
-Fishing() {
+Fishing(useMirageKeys := false) {
     global activeFunction
     static fish_died_status := false
-    ;fish_died_status := false  ; 重置状态
-    last_key123_time := 0  ; 记录最后一次按下 key1, key2, 或 key3 的时间
+    last_key123_time := 0
 
-    while (activeFunction == "fishing") {
+    while (activeFunction == "fishing_default" || activeFunction == "fishing_mirage") {
         current_time := A_TickCount
 
-        ; 同时检测 key4 和 key5
+        if (FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_died)) {
+            SoundPlay "voice\an_enemy_has_been_slayed.mp3"
+            Sleep 3000
+            break
+        }
+
         if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4) || FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
-                Send "{Numpad8}"
+                Send(useMirageKeys ? mirage_fishing_key5 : default_fishing_key5)
                 Sleep 4500
             }
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4)) {
-                Send "{Numpad7}"
+                Send(useMirageKeys ? mirage_fishing_key4 : default_fishing_key4)
                 Sleep 2000
-            }
-            ; 检查鱼是否死亡
-            if (FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_died)) {
-                SoundPlay "voice\an_enemy_has_been_slayed.mp3"
-                break
             }
             continue
         }
 
-        ; 处理 key1, key2, 和 key3
-        if (current_time - last_key123_time > 3800) {
+        if (current_time - last_key123_time > 3900) {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
-                Send "{Numpad5}"
+                Send(useMirageKeys ? mirage_fishing_key3 : default_fishing_key3)
                 Sleep 600
                 Send "{Space}"
                 last_key123_time := current_time
                 continue
             } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key2)) {
-                Send "{Numpad6}"
+                Send(useMirageKeys ? mirage_fishing_key2 : default_fishing_key2)
                 Sleep 600
                 Send "{Space}"
                 last_key123_time := current_time
                 continue
             } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key1)) {
-                Send "{Numpad4}"
+                Send(useMirageKeys ? mirage_fishing_key1 : default_fishing_key1)
                 Sleep 600
                 Send "{Space}"
                 last_key123_time := current_time
@@ -153,6 +157,6 @@ Fishing() {
             }
         }
 
-        Sleep 100  ; 添加短暂延迟，避免过度消耗 CPU
+        Sleep 100
     }
 }
