@@ -52,3 +52,17 @@ clipper :=
     "|<>*124$37.zzzzTzzzzzTzz7zwzzz3zcTzz3zWTzzUTbTznUM7zzXs0TzzXw0DzzXzxXzs7zzlrs3zzwUs3zzy0QCzzz0K7zzzU27zzzU0Dzzzk0Dzzzw0DzzzwA7zzzz17zzzzrbzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
 fish_finder :=
     "|<>*133$39.yC3XC001XQ8k00Ntk0047Ti000Vnks007y03000z00S007k00k00w000007k00000D000006400000s000007w00000z800006800000Vq000077vU000zzk0007zzA200zzzzk0Lzzzzz6zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzU"
+
+; default hotkey set
+global default_fishing_key1 := "{Numpad4}"
+global default_fishing_key2 := "{Numpad6}"
+global default_fishing_key3 := "{Numpad5}"
+global default_fishing_key4 := "{Numpad7}"
+global default_fishing_key5 := "{Numpad8}"
+
+; mirage fishing hotkey set
+global mirage_fishing_key1 := "{t}"
+global mirage_fishing_key2 := "{Numpad4}"
+global mirage_fishing_key3 := "{Numpad6}"
+global mirage_fishing_key4 := "{Numpad5}"
+global mirage_fishing_key5 := "{Numpad7}"
