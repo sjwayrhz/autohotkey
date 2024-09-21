@@ -24,7 +24,7 @@ FileInstall "voice\the_script_is_paused.mp3", A_WorkingDir "\voice\the_script_is
 FileInstall "voice\start_fishing.mp3", A_WorkingDir "\voice\start_fishing.mp3", 1
 FileInstall "voice\already_hooked.mp3", A_WorkingDir "\voice\already_hooked.mp3", 1
 FileInstall "voice\start_ship_accelerate.mp3", A_WorkingDir "\voice\start_ship_accelerate.mp3", 1
-FileInstall "voice\pink_marlin.mp3", A_WorkingDir "\voice\pink_marlin.mp3", 1
+FileInstall "voice\cant_hooked.mp3", A_WorkingDir "\voice\cant_hooked.mp3", 1
 FileInstall "voice\an_enemy_has_been_slayed.mp3", A_WorkingDir "\voice\an_enemy_has_been_slayed.mp3", 1
 
 ; Global variables
@@ -37,6 +37,10 @@ global x3 := 807
 global y3 := 27
 global x4 := 1243
 global y4 := 70
+global x5 := 786
+global y5 := 914
+global x6 := 1130
+global y6 := 932
 global isRunning := false
 
 ; Other variables
@@ -52,9 +56,11 @@ clipper :=
     "|<>*124$37.zzzzTzzzzzTzz7zwzzz3zcTzz3zWTzzUTbTznUM7zzXs0TzzXw0DzzXzxXzs7zzlrs3zzwUs3zzy0QCzzz0K7zzzU27zzzU0Dzzzk0Dzzzw0DzzzwA7zzzz17zzzzrbzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
 fish_finder :=
     "|<>*133$39.yC3XC001XQ8k00Ntk0047Ti000Vnks007y03000z00S007k00k00w000007k00000D000006400000s000007w00000z800006800000Vq000077vU000zzk0007zzA200zzzzk0Lzzzzz6zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzU"
-; sport_fishing底部进度条
-sport_fishing_timer :=
+; sport_fishing底部进度条， timer1大约进度条剩余20%， timer2进度条大约剩余5%
+sport_fishing_timer1 :=
     "|<>*92$330.Q000000000000000Tzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz0000000000000000Tzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz0000000000000000Tzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz0000000000000000Tzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz0000000000000000Tzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz0000000000000000Tzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz0000000000000000TzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzU"
+sport_fishing_timer2 :=
+    "|<>*105$328.y000zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy0003zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzk000Dzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz0000zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw0003zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzk000DzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzM000zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzwzw07zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzs"
 
 ; default hotkey set
 global default_fishing_key1 := "{Numpad4}"

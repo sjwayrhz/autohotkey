@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 
 #Include <FindText>
-#Include <variables>
+#Include <sport_fishing_variables>
 
 ; 热键: 按下ctrl+1键来切换default脚本的启动和停止
 ^1:: ToggleFishing("default")
@@ -102,8 +102,13 @@ Searching() {
             SoundPlay "voice\already_hooked.mp3"
             break
         }
-        if (FindText(&X, &Y, 786, 914, 1130, 932, 0.1, 0.1, fish_spawn)) {
-            SoundPlay "voice\pink_marlin.mp3"
+        if (FindText(&X, &Y, x5, y5, x6, y6 0.1, 0.1, fish_spawn)) {
+            Send "{Space}"
+            SoundPlay "voice\cant_hooked.mp3"
+            break
+        }
+        if (FindText(&X, &Y, x5, y5, x6, y6 0.1, 0.1, fish_spawn)) {
+            SoundPlay "voice\cant_hooked.mp3"
         }
         Sleep 1000
     }

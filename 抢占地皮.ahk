@@ -11,7 +11,7 @@ ClickAndMoveMouse(targetX, targetY) {
     if (FindText(&X := "wait0", &Y := -1, 806, 28, 1116, 68, 0.05, 0.05, black)) {
         Click("left", 2)
         MouseMove(targetX, targetY)
-        loop 10 {
+        loop 50 {
             Click
             Sleep(10)
         }
