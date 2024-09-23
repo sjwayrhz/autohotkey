@@ -102,12 +102,12 @@ Searching() {
             SoundPlay "voice\already_hooked.mp3"
             break
         }
-        if (FindText(&X, &Y, x5, y5, x6, y6 0.1, 0.1, fish_spawn)) {
+        if (FindText(&X, &Y, x5, y5, x6, y6 0.3, 0.3, fish_spawn)) {
             Send "{Space}"
             SoundPlay "voice\cant_hooked.mp3"
             break
         }
-        if (FindText(&X, &Y, x5, y5, x6, y6 0.1, 0.1, fish_spawn)) {
+        if (FindText(&X, &Y, x5, y5, x6, y6 0.3, 0.3, fish_spawn)) {
             SoundPlay "voice\cant_hooked.mp3"
         }
         Sleep 1000
@@ -128,15 +128,14 @@ Fishing(useMirageKeys := false) {
             break
         }
 
-        if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4) || FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
-            if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
-                Send(useMirageKeys ? mirage_fishing_key5 : default_fishing_key5)
-                Sleep 4500
-            }
-            if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4)) {
-                Send(useMirageKeys ? mirage_fishing_key4 : default_fishing_key4)
-                Sleep 2000
-            }
+        if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
+            Send(useMirageKeys ? mirage_fishing_key5 : default_fishing_key5)
+            Sleep 4500
+            continue
+        }
+        if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4)) {
+            Send(useMirageKeys ? mirage_fishing_key4 : default_fishing_key4)
+            Sleep 2000
             continue
         }
 
