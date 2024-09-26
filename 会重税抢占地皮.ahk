@@ -13,7 +13,7 @@ black :=
 
 ClickAndMoveMouse(targetX, targetY) {
     global isRunning
-    if (FindText(&X := "wait0", &Y := -1, 806, 28, 1116, 68, 0.05, 0.05, black)) {
+    if (FindText(&X := "wait0", &Y := -1, 806, 28, 1116, 68, 0.2, 0.2, black)) {
         Click("left", 2)
         MouseMove(targetX, targetY)
         loop 50 {
