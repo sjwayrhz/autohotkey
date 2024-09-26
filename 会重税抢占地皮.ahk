@@ -29,9 +29,9 @@ ClickAndMoveMouse(targetX, targetY) {
     global isHotkeyActive
     isHotkeyActive := !isHotkeyActive
     if (isHotkeyActive) {
-        ToolTip("抢地脚本已启用")
+        ToolTip("会重税-已启用")
     } else {
-        ToolTip("抢地脚本已禁用")
+        ToolTip("会重税-已禁用")
     }
     SetTimer(() => ToolTip(), -2000)
 }
@@ -42,7 +42,7 @@ ClickAndMoveMouse(targetX, targetY) {
     global isRunning, isHotkeyActive
     if (isHotkeyActive && !isRunning) {
         isRunning := true
-        ToolTip("抢地脚本，会免税已经开启")
+        ToolTip("抢地脚本-会重税-开启")
         SetTimer(() => ToolTip(), -2000)
         ; 等待稻草人的黑色空血条消失的瞬间插地
         ClickAndMoveMouse(919, 739)
