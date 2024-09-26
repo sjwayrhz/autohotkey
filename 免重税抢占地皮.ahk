@@ -1,7 +1,8 @@
 #Include <FindText>
 
-; Global variable to track if the script is currently running
+; Global variables to track script state
 global isRunning := false
+global isHotkeyActive := false
 
 ; red 表示稻草人的红色血条下的Untouchable的buff图标
 ; black表示稻草人被敲击后的黑色血条
@@ -23,11 +24,23 @@ ClickAndMoveMouse(targetX, targetY) {
     isRunning := false
 }
 
+; Toggle hotkey active state
+`:: {
+    global isHotkeyActive
+    isHotkeyActive := !isHotkeyActive
+    if (isHotkeyActive) {
+        ToolTip("抢地脚本已启用")
+    } else {
+        ToolTip("抢地脚本已禁用")
+    }
+    SetTimer(() => ToolTip(), -2000)
+}
+
 ; 重税需要ClickAndMoveMouse(919, 739)
 ; 免税需要ClickAndMoveMouse(919, 669)
 ~LButton:: {
-    global isRunning
-    if (!isRunning) {
+    global isRunning, isHotkeyActive
+    if (isHotkeyActive && !isRunning) {
         isRunning := true
         ToolTip("抢地脚本，会免税已经开启")
         SetTimer(() => ToolTip(), -2000)
