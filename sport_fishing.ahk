@@ -98,12 +98,13 @@ Searching() {
         return
     }
 
-    timeLimit := (activeFunction == "fishing_default") ? 40000 : 30000
+    timeLimit := (activeFunction == "fishing_default") ? 40000 : 180000
     lastInputTime := A_TickCount
 
     loop {
         if (FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_spawn)) {
             SoundPlay "voice\already_hooked.mp3"
+            Sleep 1000
             break
         }
         if (FindText(&X, &Y, x5, y5, x6, y6, 0.3, 0.3, fish_spawn)) {
@@ -141,7 +142,7 @@ Fishing(useMirageKeys := false) {
 
         if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
             Send(useMirageKeys ? mirage_fishing_key5 : default_fishing_key5)
-            Sleep 4200
+            Sleep 4850
             continue
         }
         if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key4)) {
@@ -150,7 +151,7 @@ Fishing(useMirageKeys := false) {
             continue
         }
 
-        if (current_time - last_key123_time > 3900) {
+        if (current_time - last_key123_time > 4150) {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
                 Send(useMirageKeys ? mirage_fishing_key3 : default_fishing_key3)
                 Sleep 600
