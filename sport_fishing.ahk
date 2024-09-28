@@ -97,20 +97,31 @@ Searching() {
     if (activeFunction != "fishing_default" && activeFunction != "fishing_mirage") {
         return
     }
+
+    timeLimit := (activeFunction == "fishing_default") ? 40000 : 30000
+    lastInputTime := A_TickCount
+
     loop {
         if (FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_spawn)) {
             SoundPlay "voice\already_hooked.mp3"
             break
         }
-        if (FindText(&X, &Y, x5, y5, x6, y6 0.3, 0.3, fish_spawn)) {
+        if (FindText(&X, &Y, x5, y5, x6, y6, 0.3, 0.3, fish_spawn)) {
             Send "{Space}"
             SoundPlay "voice\cant_hooked.mp3"
             break
         }
-        if (FindText(&X, &Y, x5, y5, x6, y6 0.3, 0.3, fish_spawn)) {
-            SoundPlay "voice\cant_hooked.mp3"
+
+        if (A_TimeIdle < 100) {  ; 检测到用户输入
+            lastInputTime := A_TickCount
         }
-        Sleep 1000
+
+        if (A_TickCount - lastInputTime >= timeLimit) {
+            SoundPlay "voice\cant_hooked.mp3"
+            return
+        }
+
+        Sleep 100
     }
 }
 
@@ -130,12 +141,12 @@ Fishing(useMirageKeys := false) {
 
         if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
             Send(useMirageKeys ? mirage_fishing_key5 : default_fishing_key5)
-            Sleep 4500
+            Sleep 4200
             continue
         }
-        if (FindText(&X, &Y, x1, y1, x2, y2, 0.3, 0.3, key4)) {
+        if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key4)) {
             Send(useMirageKeys ? mirage_fishing_key4 : default_fishing_key4)
-            Sleep 2000
+            Sleep 2050
             continue
         }
 
