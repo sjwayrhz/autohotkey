@@ -13,7 +13,7 @@
 ^3:: ToggleFishing("mirage")
 
 ; 全局变量
-global activeFunction := "none"  ; 可能的值: "none", "fishing", "shipautorun"
+global activeFunction := "none"  ; 可能的值: "none", "fishing_default", "fishing_mirage", "shipautorun"
 
 ; 钓鱼脚本状态的函数
 ToggleFishing(method := "default") {
@@ -102,6 +102,10 @@ Searching() {
     lastInputTime := A_TickCount
 
     loop {
+        if (activeFunction != "fishing_default" && activeFunction != "fishing_mirage") {
+            return
+        }
+
         if (FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_spawn)) {
             SoundPlay "voice\already_hooked.mp3"
             Sleep 1000
