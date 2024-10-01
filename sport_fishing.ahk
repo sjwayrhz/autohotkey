@@ -155,7 +155,7 @@ Fishing(useMirageKeys := false) {
             continue
         }
 
-        if (current_time - last_key123_time > 4150) {
+        if (current_time - last_key123_time > 4250) {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
                 Send(useMirageKeys ? mirage_fishing_key3 : default_fishing_key3)
                 Sleep 600
