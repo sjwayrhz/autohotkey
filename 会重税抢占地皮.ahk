@@ -7,7 +7,7 @@ global isHotkeyActive := false
 
 ClickAndMoveMouse(targetX, targetY) {
     global isRunning
-    if (FindText(&X := "wait0", &Y := -1, 806, 28, 1116, 68, 0.2, 0.2, black)) {
+    if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0.2, 0.2, black)) {
         Click("left", 2)
         MouseMove(targetX, targetY)
         loop 50 {
