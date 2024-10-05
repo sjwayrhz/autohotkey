@@ -5,23 +5,22 @@
 
 ; Key definitions
 key5 :=
-    "|<>*104$28.z1zszlnzDzDbxzs3rjzVyBzy1kTzw60zzkk1zza07zzrUDzymCTzu9zzzugDzz+rzztj6zzUT9zznazzzf7z0bbw0087w00UTs42N604DwM00tk0U"
+    "|<>*97$24.w7zXlnzDltzTUDSzVyBzUQ7zUM3zkk1zts1zvc0zy8zTwcVzzchzzcjzzcljzcybzdgrzcnz2sTk003w083y01oM4/wM0DA0kA40AM708s30U"
 key4 :=
-    "|<>*118$26.y003y020TsBg7wQ1kyA06CC80lAA1CK7QsX/xU4Wz6F8ivwEDBz0HvJngCxtv/jCLmPycQKxf36j7skzzzB60zzEMxvq1wAQU62zdCFAzDUY8"
+    "|<>*114$27.y003z010Dy3P1zXUC7sk0MwQE1XAA1CP3yQFmzM1ALMm9Xmjl0PH20HuPva7TTwmuyRqHTx3lPvg6Bzrkkzzz6X0Dzo6DSykDVXm0Q/rmQGMz/VYA"
 
 key3 :=
-    "|<>*115$28.0000A2000kz0097D000QD200UDs030Dk04QTY0TtjM0Abns1Wzgk6f3v0mxxs3PlvkM7nj0wtjS1vlyy0tzzw03zxM00zVY01zzks1zrzPXDzkzUU"
+    "|<>*113$28.000042000Ez0083D000QD000UDs020Dk04sTY0SUDM1mDns5iVgkSyyN0Pvxs1jtvkKzvb0OvDS0xnyw1tzzw03zxM00zVY00zzks0zrzN0DzkzUzz3zW"
 key2 :=
-    "|<>*104$27.zzzzzUTzzsVzzzNzkDrw00yzs07jzk1xzy0DzzU1vzs0DTt71zy9yDzpMHzwfTTzBsvzs7nbztnKTjj6nzzznDzC88zr05bzU0ozss7LyNlwzi66zvUw3zw30A"
+    "|<>*95$26.zzzzz0zzzW7zzvDy1xz00DTw03jzk1vzw0Rzy07Tr01rlbsTtF27zoqFzxByzzFXjzIzQzhBZ7rHXNzwznDyQ0HzQ0Kzg02jyC1rzAsyzi66zr0s6"
 key1 :=
-    "|<>*103$26.zzw3zzy4TUTwrk03yw03zjU3zxs0zzS17zzVszysmDzi8bzzq/3zz+rzzawTz87mzbnartywSwnzzz88xzqU3jxM0Dzi1lzrlnjzMMRzUQ3zs"
+    "|<>*98$26.zzy1zzz2DkDyPs01zS01zrk1zyw0Tzj3XzzncTzxWDzzGa7zrdhzyuPzzeX7zadyzl/P/wqz7SNzzz40QznE1rwc06zL0sznstbzgACzkC1rs30Ty"
 
 ; FileInstall commands
 DirCreate "voice"
-FileInstall "voice\the_script_is_resumed.mp3", A_WorkingDir "\voice\the_script_is_resumed.mp3", 1
-FileInstall "voice\the_script_is_suspended.mp3", A_WorkingDir "\voice\the_script_is_suspended.mp3", 1
 FileInstall "voice\the_script_is_paused.mp3", A_WorkingDir "\voice\the_script_is_paused.mp3", 1
-FileInstall "voice\start_fishing.mp3", A_WorkingDir "\voice\start_fishing.mp3", 1
+FileInstall "voice\start_fishing_default.mp3", A_WorkingDir "\voice\start_fishing_default.mp3", 1
+FileInstall "voice\start_fishing_mirage.mp3", A_WorkingDir "\voice\start_fishing_mirage.mp3", 1
 FileInstall "voice\already_hooked.mp3", A_WorkingDir "\voice\already_hooked.mp3", 1
 FileInstall "voice\start_ship_accelerate.mp3", A_WorkingDir "\voice\start_ship_accelerate.mp3", 1
 FileInstall "voice\cant_hooked.mp3", A_WorkingDir "\voice\cant_hooked.mp3", 1

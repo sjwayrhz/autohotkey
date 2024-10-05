@@ -24,8 +24,13 @@ ToggleFishing(method := "default") {
         StopActiveFunction()
         activeFunction := "fishing_" . method
         SetTimer(FishingTrigger, 1000)
-        SoundPlay "voice\start_fishing.mp3"
-        ToolTip(method == "default" ? "默认钓鱼脚本已启动" : "海市蜃楼钓鱼脚本已启动")
+        if (method == "default") {
+            SoundPlay "voice\start_fishing_default.mp3"
+            ToolTip("默认钓鱼脚本已启动")
+        } else {
+            SoundPlay "voice\start_fishing_mirage.mp3"
+            ToolTip("海市蜃楼钓鱼脚本已启动")
+        }
         SetTimer(() => ToolTip(), -2000)
     }
 }
@@ -155,7 +160,7 @@ Fishing(useMirageKeys := false) {
             continue
         }
 
-        if (current_time - last_key123_time > 4250) {
+        if (current_time - last_key123_time > 4450) {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
                 Send(useMirageKeys ? mirage_fishing_key3 : default_fishing_key3)
                 Sleep 600
