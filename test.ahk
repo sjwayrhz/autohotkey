@@ -1,7 +1,3 @@
-`::{
-    loop {
-        send ("h")
-        sleep(2000)
-    }
-
-}
+; 灰色，血条为空的时候
+grey :=
+    "|<>*101$121.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyzzzzzzzzzzzzzzzzzzzw7zzzzzzzzzzzzzzzzzzyvzzzzzzzzzzzzzzzzzzyQzzzzzzzzzzzzzzzzzzzCTzzzzzzzzzzzzzzzzzzbDzzzzzzzzzzzzzzzzzznbzzzzzzzzzzzzzzzzzzxrzzzzzzzzzzzzzzzzzzyHzzzzzzzzzzzzzzzzzzzXzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzjzzzzzzzzzzzzzzzzzzz1zzzzzzzzzzzzzzzzzzzizzzzzzzzzzzzzzzzzzzbDzzzzzzzzzzzzzzzzzznbzzzzzzzzzzzzzzzzzztnzzzzzzzzzzzzzzzzzzwtzzzzzzzzzzzzzzzzzzzRzzzzzzzzzzzzzzzzzzzYzzzzzzzzzzzzzzzzzzzszzzzzzzzzzzzzzzzzzzzzzzxzzzzzzzzzzzzzzzzz"
