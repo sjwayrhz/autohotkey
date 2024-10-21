@@ -3,8 +3,10 @@
 ; 全局变量来跟踪脚本状态
 global isRunning := false
 
+; 热键设置：按下 Esc 键退出
+Esc:: ExitApp
 ; 热键设置：按下 ` 键切换脚本的运行状态
-`:: ToggleScript()
+~MButton:: ToggleScript()
 
 ToggleScript() {
     global isRunning

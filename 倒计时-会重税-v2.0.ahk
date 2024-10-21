@@ -43,7 +43,7 @@ MButton:: {
         ; If script is not running, start it
         isRunning := true
         isAutoClickEnabled := true
-        ToolTip("抢地脚本-免重税-开启")
+        ToolTip("抢地脚本-会重税-开启")
         SetTimer(auto_click, 25)
     }
     SetTimer(() => ToolTip(), -2000)
