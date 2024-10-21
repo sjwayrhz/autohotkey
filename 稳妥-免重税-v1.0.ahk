@@ -7,9 +7,10 @@ global isHotkeyActive := false
 
 ClickAndMoveMouse(targetX, targetY) {
     global isRunning
+    Sleep 1000
+    MouseMove(targetX, targetY)
+    SoundPlay "voice\confirm_no_mouse_keyboard.mp3"
     if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0.2, 0.2, black)) {
-        Click("left", 1)
-        MouseMove(targetX, targetY)
         loop 50 {
             Click
             Sleep(10)
@@ -24,6 +25,7 @@ ClickAndMoveMouse(targetX, targetY) {
     isHotkeyActive := !isHotkeyActive
     if (isHotkeyActive) {
         ToolTip("免重税-已启用")
+        SoundPlay "voice\monitor_scarecrow_bar.mp3"
     } else {
         ToolTip("免重税-已禁用")
     }

@@ -7,9 +7,10 @@ global isHotkeyActive := false
 
 ClickAndMoveMouse(targetX, targetY) {
     global isRunning
+    Sleep 1000
+    MouseMove(targetX, targetY)
+    SoundPlay "voice\confirm_no_mouse_keyboard.mp3"
     if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0.2, 0.2, black)) {
-        Click("left", 1)
-        MouseMove(targetX, targetY)
         loop 50 {
             Click
             Sleep(10)
@@ -23,9 +24,10 @@ ClickAndMoveMouse(targetX, targetY) {
     global isHotkeyActive
     isHotkeyActive := !isHotkeyActive
     if (isHotkeyActive) {
-        ToolTip("会重税-已启用")
+        ToolTip("免重税-已启用")
+        SoundPlay "voice\monitor_scarecrow_bar.mp3"
     } else {
-        ToolTip("会重税-已禁用")
+        ToolTip("免重税-已禁用")
     }
     SetTimer(() => ToolTip(), -2000)
 }
@@ -36,7 +38,7 @@ ClickAndMoveMouse(targetX, targetY) {
     global isRunning, isHotkeyActive
     if (isHotkeyActive && !isRunning) {
         isRunning := true
-        ToolTip("抢地脚本-会重税-开启")
+        ToolTip("抢地脚本-免重税-开启")
         SetTimer(() => ToolTip(), -2000)
         ; 等待稻草人的黑色空血条消失的瞬间插地
         ClickAndMoveMouse(919, 739)
