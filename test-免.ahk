@@ -12,6 +12,7 @@ ClickAndMoveMouse(targetX, targetY) {
         if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0.2, 0.2, buff_removal_deuff)) {
             ToolTip("开始倒计时")
             SetTimer(() => ToolTip(), -2000)
+            SoundPlay "voice\countdown.mp3"
             Sleep 19966
             Click("left", 2)
             MouseMove(targetX, targetY)

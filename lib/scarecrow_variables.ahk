@@ -1,5 +1,9 @@
 #Requires AutoHotkey v2.0
 
+; FileInstall commands
+DirCreate "voice"
+FileInstall "voice\countdown.mp3", A_WorkingDir "\voice\countdown.mp3", 1
+
 ; removal deuff
 buff_removal_deuff := "|<>*121$20.zzlzzcTy07z02k09C0U1k02S003UE0k00A006200k108EU3MEEw84C61z3UzkwzwDzz7zzlzzszTyTXzzkTs"
 ; buff_untouchable

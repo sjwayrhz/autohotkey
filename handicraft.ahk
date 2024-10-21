@@ -20,29 +20,36 @@ ToggleScript() {
 }
 
 PerformClicks() {
-    while (isRunning) {
-        ; 第一组点击
-        MouseMove(804, 573)
-        Click
-        Sleep 500
-        Click
-        Sleep(1000)
-        MouseMove(1229, 795)
-        Click
-        Sleep 500
-        Click
-        Sleep(9000)
+    if (!isRunning) {
+        return  ; 如果脚本不在运行状态，立即退出函数
+    }
 
-        ; 第二组点击
-        MouseMove(804, 547)
-        Click
-        Sleep 500
-        Click
-        Sleep(1000)
-        MouseMove(1229, 795)
-        Click
-        Sleep 500
-        Click
-        Sleep(9000)
+    ; 第一组点击
+    MouseMove(804, 573)
+    Click
+    Sleep 500
+    Click
+    Sleep(1000)
+    MouseMove(1229, 795)
+    Click
+    Sleep 500
+    Click
+    Sleep(9000)
+
+    ; 第二组点击
+    MouseMove(804, 547)
+    Click
+    Sleep 500
+    Click
+    Sleep(1000)
+    MouseMove(1229, 795)
+    Click
+    Sleep 500
+    Click
+    Sleep(9000)
+
+    ; 检查是否应该继续运行
+    if (isRunning) {
+        SetTimer(PerformClicks, -10)  ; 如果仍在运行，则安排下一次执行
     }
 }
