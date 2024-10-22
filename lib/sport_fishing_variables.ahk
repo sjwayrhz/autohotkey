@@ -28,14 +28,14 @@ FileInstall "voice\an_enemy_has_been_slayed.mp3", A_WorkingDir "\voice\an_enemy_
 
 ; Global variables
 ; x1,y1,x2,y2是鱼的buff坐标，x3,y3,x4,y4是鱼的血条坐标
-global x1 := 793
-global y1 := 56
-global x2 := 969
-global y2 := 101
-global x3 := 788
-global y3 := 20
-global x4 := 1255
-global y4 := 75
+global x1 := 720
+global y1 := 47
+global x2 := 924
+global y2 := 113
+global x3 := 700
+global y3 := 13
+global x4 := 1196
+global y4 := 78
 global x5 := 786
 global y5 := 914
 global x6 := 1130
