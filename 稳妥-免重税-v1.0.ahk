@@ -32,8 +32,8 @@ ClickAndMoveMouse(targetX, targetY) {
     SetTimer(() => ToolTip(), -2000)
 }
 
-; 重税需要ClickAndMoveMouse(919, 739)
-; 免税需要ClickAndMoveMouse(919, 669)
+; 重税需要ClickAndMoveMouse(919, 769)
+; 免税需要ClickAndMoveMouse(919, 697)
 ~LButton:: {
     global isRunning, isHotkeyActive
     if (isHotkeyActive && !isRunning) {
@@ -41,6 +41,6 @@ ClickAndMoveMouse(targetX, targetY) {
         ToolTip("抢地脚本-免重税-开启")
         SetTimer(() => ToolTip(), -2000)
         ; 等待稻草人的黑色空血条消失的瞬间插地
-        ClickAndMoveMouse(919, 669)
+        ClickAndMoveMouse(919, 697)
     }
 }
