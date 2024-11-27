@@ -10,7 +10,7 @@ ClickAndMoveMouse(targetX, targetY) {
     Sleep 1000
     MouseMove(targetX, targetY)
     SoundPlay "voice\confirm_no_mouse_keyboard.mp3"
-    if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0, 0, black)) {
+    if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0.1, 0.1, black)) {
         loop 50 {
             Click
             Sleep(10)
