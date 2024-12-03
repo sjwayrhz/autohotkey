@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 
 #Include <FindText>
-#Include <sport_fishing_variables>
+#Include <sport_fishing_variables_huawei>
 
 ; 热键: 按下ctrl+1键来切换default脚本的启动和停止
 ^1:: ToggleFishing("default")
@@ -91,7 +91,8 @@ ShipAutoRunTrigger() {
 
     X := Y := 0
     if (FindText(&X, &Y, 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, clipper)
-        || FindText(&X, &Y, 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, fish_finder)) {
+    || FindText(&X, &Y, 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, fish_finder1)
+    || FindText(&X, &Y, 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, fish_finder2)) {
         Send "{Numpad6}"
         lastActionTime := currentTime
     }
