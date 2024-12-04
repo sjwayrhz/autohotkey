@@ -96,6 +96,14 @@ ShipAutoRunTrigger() {
         Send "{Numpad6}"
         lastActionTime := currentTime
     }
+    if (FindText(&X, &Y, 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, speedboat)) {
+        Send "c"
+        Sleep 1000
+        Send "c"
+        Sleep 1000
+        Send "c"
+        lastActionTime := currentTime
+    }
 }
 
 Searching() {

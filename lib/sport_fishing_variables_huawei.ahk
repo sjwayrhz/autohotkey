@@ -57,6 +57,8 @@ fish_finder1 :=
     "|<>*133$39.yC3XC001XQ8k00Ntk0047Ti000Vnks007y03000z00S007k00k00w000007k00000D000006400000s000007w00000z800006800000Vq000077vU000zzk0007zzA200zzzzk0Lzzzzz6zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzU"
 fish_finder2 :=
     "|<>*101$42.Xtxk0UDjtwk001zsyk0E1zwzrklzzySnsk1zyQ0041UCTk081w07ksU1bw00s01bzw0001nzA0001nyA0001kAQ0001sAU0001U0kE001U1k1kW7U3s1UmDU2y6VyDk0S07zbk0C01zrk0001zjU0007stg81UDzxwDzkPzzU7rkwzzUjX0zzzs840TzzsUa07zzU"
+speedboat :=
+    "|<>*139$38.zy0000Tz20003zl0001zto0Y0zlv0D0Tvtk7k77tz1zlksTyTyw7ADrzj0y1g7zk70ltzw0wASPz07uwyPs0zzf6z0Dzykas7zzw8D0zzzz3wDzzzsz3zzzzDsTzzx3z3zzakzsDzyADs0zzU1k01zU0+000001s00000720000U"
 
 ; sport_fishing底部进度条， timer1大约进度条剩余20%， timer2进度条大约剩余5%
 sport_fishing_timer1 :=

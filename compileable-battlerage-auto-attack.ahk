@@ -84,8 +84,8 @@ threshold :=
         Send("{F2}")
         Send("{F1}")
         ; Send("3")
-        Send("+3")
-        Send("+1")
+        ; Send("+3")
+        ; Send("+1")
         Sleep(50)
         loop 50 {
             send "2"
