@@ -23,7 +23,7 @@ ToggleFishing(method := "default") {
     } else {
         StopActiveFunction()
         activeFunction := "fishing_" . method
-        SetTimer(FishingTrigger, 1000)
+        SetTimer(FishingTrigger, 100)
         if (method == "default") {
             SoundPlay "voice\start_fishing_default.mp3"
             ToolTip("默认钓鱼脚本已启动")
