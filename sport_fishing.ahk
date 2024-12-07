@@ -160,31 +160,31 @@ Fishing(useMirageKeys := false) {
 
         if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key5)) {
             Send(useMirageKeys ? mirage_fishing_key5 : default_fishing_key5)
-            Sleep 4850
+            Sleep 4650
             continue
         }
         if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key4)) {
             Send(useMirageKeys ? mirage_fishing_key4 : default_fishing_key4)
-            Sleep 2050
+            Sleep 2325
             continue
         }
 
-        if (current_time - last_key123_time > 16868) {
+        if (current_time - last_key123_time > 4968) {
             if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key3)) {
                 Send(useMirageKeys ? mirage_fishing_key3 : default_fishing_key3)
-                Sleep 600
+                Sleep 400
                 Send "{Space}"
                 last_key123_time := current_time
                 continue
             } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key2)) {
                 Send(useMirageKeys ? mirage_fishing_key2 : default_fishing_key2)
-                Sleep 600
+                Sleep 400
                 Send "{Space}"
                 last_key123_time := current_time
                 continue
             } else if (FindText(&X, &Y, x1, y1, x2, y2, 0.2, 0.2, key1)) {
                 Send(useMirageKeys ? mirage_fishing_key1 : default_fishing_key1)
-                Sleep 600
+                Sleep 400
                 Send "{Space}"
                 last_key123_time := current_time
                 continue
