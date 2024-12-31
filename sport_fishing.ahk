@@ -152,7 +152,7 @@ Fishing(useMirageKeys := false) {
     while (activeFunction == "fishing_default" || activeFunction == "fishing_mirage") {
         current_time := A_TickCount
 
-        if (FindText(&X, &Y, x3, y3, x4, y4, 0, 0, fish_died)) {
+        if (FindText(&X, &Y, x3, y3, x4, y4, 0.1, 0.1, fish_died)) {
             SoundPlay "voice\an_enemy_has_been_slayed.mp3"
             Sleep 3000
             break
