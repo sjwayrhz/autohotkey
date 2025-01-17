@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 
 #Include <FindText>
-#Include <sport_fishing_variables_huawei>
+#Include <sport_fishing_variables_2k>
 
 ; 热键: 按下ctrl+1键来切换default脚本的启动和停止
 ^1:: ToggleFishing("default")
