@@ -16,7 +16,7 @@ ClickAndMoveMouse() {
         Click 2  ; 使用单行代码执行双击
         Sleep 1000
         ; 寻找cancel按钮
-        if (FindText(&X := "", &Y := "", 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, build)) {
+        if (FindText(&X := "", &Y := "", 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, cancel)) {
             ; 使用FindText的方法移动到cancel并点击
             FindText().Click(X, Y, "L")
         }
