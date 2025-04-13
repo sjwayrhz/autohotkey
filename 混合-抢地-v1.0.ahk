@@ -5,18 +5,14 @@
 global isRunning := false
 global isHotkeyActive := false
 
-ClickAndMoveMouse() {
+ClickAndMoveMouse(targetX, targetY) {
     global isRunning
     Sleep 1000
+    MouseMove(targetX, targetY)
     SoundPlay "voice\confirm_no_mouse_keyboard.mp3"
-
-    ; 检测black血条是否消失
-    if (!FindText(&X := "", &Y := "", x1, y1, x2, y2, 0, 0, black)) {
-        ; 血条消失了，立即鼠标左键双击（在当前位置）
-        Click 2  ; 使用单行代码执行双击
-        Sleep 1000
-        ; 寻找cancel按钮
-        if (FindText(&X := "", &Y := "", 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, build)) {
+    if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0.1, 0.1, black)) {
+        Click 2
+        if (FindText(&X := 'wait', &Y := 3, 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, build)) {
             ; 使用FindText的方法移动到cancel并点击
             FindText().Click(X, Y, "L")
         }
@@ -25,7 +21,6 @@ ClickAndMoveMouse() {
             Sleep(10)
         }
     }
-
     isRunning := false
 }
 
@@ -34,21 +29,23 @@ ClickAndMoveMouse() {
     global isHotkeyActive
     isHotkeyActive := !isHotkeyActive
     if (isHotkeyActive) {
-        ToolTip("混合-已启用")
+        ToolTip("会重税-已启用")
         SoundPlay "voice\monitor_scarecrow_bar.mp3"
     } else {
-        ToolTip("混合-已禁用")
+        ToolTip("会重税-已禁用")
     }
     SetTimer(() => ToolTip(), -2000)
 }
 
+; 重税需要ClickAndMoveMouse(919, 769)
+; 免税需要ClickAndMoveMouse(919, 697)
 ~LButton:: {
     global isRunning, isHotkeyActive
     if (isHotkeyActive && !isRunning) {
         isRunning := true
-        ToolTip("抢地脚本-混合-开启")
+        ToolTip("抢地脚本-会重税-开启")
         SetTimer(() => ToolTip(), -2000)
         ; 等待稻草人的黑色空血条消失的瞬间插地
-        ClickAndMoveMouse()
+        ClickAndMoveMouse(1024, 852)
     }
 }
