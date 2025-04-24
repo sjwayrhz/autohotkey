@@ -11,7 +11,7 @@ ClickAndMoveMouse(targetX, targetY) {
     MouseMove(targetX, targetY)
     SoundPlay "voice\confirm_no_mouse_keyboard.mp3"
     if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0.1, 0.1, black)) {
-        Click 2
+        Click 10
         if (FindText(&X := 'wait', &Y := 3, 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, build)) {
             ; 使用FindText的方法移动到cancel并点击
             FindText().Click(X, Y, "L")
@@ -29,10 +29,10 @@ ClickAndMoveMouse(targetX, targetY) {
     global isHotkeyActive
     isHotkeyActive := !isHotkeyActive
     if (isHotkeyActive) {
-        ToolTip("会重税-已启用")
+        ToolTip("抢地-已启用")
         SoundPlay "voice\monitor_scarecrow_bar.mp3"
     } else {
-        ToolTip("会重税-已禁用")
+        ToolTip("抢地-已禁用")
     }
     SetTimer(() => ToolTip(), -2000)
 }
@@ -43,7 +43,7 @@ ClickAndMoveMouse(targetX, targetY) {
     global isRunning, isHotkeyActive
     if (isHotkeyActive && !isRunning) {
         isRunning := true
-        ToolTip("抢地脚本-会重税-开启")
+        ToolTip("抢地脚本-抢地-开启")
         SetTimer(() => ToolTip(), -2000)
         ; 等待稻草人的黑色空血条消失的瞬间插地
         ClickAndMoveMouse(1024, 852)
