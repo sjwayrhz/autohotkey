@@ -11,14 +11,14 @@ ClickAndMoveMouse(targetX, targetY) {
     MouseMove(targetX, targetY)
     SoundPlay "voice\confirm_no_mouse_keyboard.mp3"
     if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0.1, 0.1, black)) {
-        Click 10
-        if (FindText(&X := 'wait', &Y := 3, 0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, cancel)) {
+        Click 4
+        if (FindText(&X := 'wait', &Y := 3, 0, 0, 0, 0, 0.1, 0.1, cancel)) {
             ; 使用FindText的方法移动到cancel并点击
             FindText().Click(X, Y, "L")
         }
-        loop 25 {
-            Click
-            Sleep(10)
+        loop 10 {
+            Click 2
+            Sleep(5)
         }
     }
     isRunning := false
