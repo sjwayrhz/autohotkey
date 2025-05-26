@@ -1,5 +1,5 @@
 #Include <FindText>
-#Include <scarecrow_variables_2k>
+#Include <scarecrow_2k>
 
 ; Global variables to track script state
 global isRunning := false

@@ -1,5 +1,5 @@
 #Include <FindText>
-#Include <scarecrow_variables_2k>
+#Include <scarecrow_2k>
 
 ; Global variables to track script state
 global isRunning := false
@@ -10,7 +10,7 @@ ClickAndMoveMouse(targetX, targetY) {
     Sleep 1000
     MouseMove(targetX, targetY)
     SoundPlay "voice\confirm_no_mouse_keyboard.mp3"
-    if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0.1, 0.1, black)) {
+    if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0, 0, black)) {
         Click 4
         if (FindText(&X := 'wait', &Y := 3, 0, 0, 0, 0, 0, 0, build)) {
             ; 使用FindText的方法移动到build并点击
