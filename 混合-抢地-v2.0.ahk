@@ -4,6 +4,7 @@
 ; Global variables to track script state
 global isRunning := false
 global isHotkeyActive := false
+global fireCheckTimer := 0
 
 ClickAndMoveMouse(targetX, targetY) {
     global isRunning
@@ -24,21 +25,42 @@ ClickAndMoveMouse(targetX, targetY) {
     isRunning := false
 }
 
+; Function to check for fire icon
+CheckFireIcon() {
+    global isHotkeyActive
+    if (!isHotkeyActive) {
+        if (FindText(&X := "wait", &Y := 1, x3, y3, x4, y4, 0.1, 0.1, fire)) {
+            ToolTip("火焰图标已出现 请切换到抢地模式")
+            SoundPlay "voice\fire_buff_on.mp3"  ; 可选：播放提示音
+            SetTimer(() => ToolTip(""), -2000)
+            ; 暂停检测10秒，避免重复提醒
+            SetTimer(CheckFireIcon, 0)
+            SetTimer(CheckFireIcon, 10000)
+        }
+    }
+}
+
 ; Toggle hotkey active state
 `:: {
-    global isHotkeyActive
+    global isHotkeyActive, fireCheckTimer
     isHotkeyActive := !isHotkeyActive
     if (isHotkeyActive) {
         ToolTip("抢地-已启用")
         SoundPlay "voice\monitor_scarecrow_bar.mp3"
+        ; 停止火焰图标检测定时器
+        if (fireCheckTimer) {
+            SetTimer(CheckFireIcon, 0)
+            fireCheckTimer := 0
+        }
     } else {
-        ToolTip("抢地-已禁用")
+        ToolTip("抢地-已禁用-探测火焰图标")
+        ; 启动火焰图标检测定时器，每1秒检测一次
+        SetTimer(CheckFireIcon, 1000)
+        fireCheckTimer := 1
     }
     SetTimer(() => ToolTip(), -2000)
 }
 
-; 重税需要ClickAndMoveMouse(919, 769)
-; 免税需要ClickAndMoveMouse(919, 697)
 ~LButton:: {
     global isRunning, isHotkeyActive
     if (isHotkeyActive && !isRunning) {
