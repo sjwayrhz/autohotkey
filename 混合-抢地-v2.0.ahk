@@ -30,9 +30,9 @@ CheckFireIcon() {
     global isHotkeyActive
     if (!isHotkeyActive) {
         if (FindText(&X := "wait", &Y := 1, x3, y3, x4, y4, 0.1, 0.1, fire)) {
-            ToolTip("火焰图标已出现 请切换到抢地模式")
+            ; ToolTip("火焰图标已出现 请切换到抢地模式")
             SoundPlay "voice\fire_buff_on.mp3"  ; 可选：播放提示音
-            SetTimer(() => ToolTip(""), -2000)
+            ; SetTimer(() => ToolTip(""), -2000)
             ; 暂停检测10秒，避免重复提醒
             SetTimer(CheckFireIcon, 0)
             SetTimer(CheckFireIcon, 10000)
