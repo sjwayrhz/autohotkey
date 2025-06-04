@@ -13,13 +13,29 @@ ClickAndMoveMouse(targetX, targetY) {
     SoundPlay "voice\confirm_no_mouse_keyboard.mp3"
     if (FindText(&X := "wait0", &Y := -1, x1, y1, x2, y2, 0, 0, black)) {
         Click 4
-        if (FindText(&X := 'wait', &Y := 3, 0, 0, 0, 0, 0, 0, build)) {
-            ; 使用FindText的方法移动到build并点击
-            FindText().Click(X, Y, "L")
+
+        ; 重复寻找并点击build按钮，直到找不到为止
+        maxAttempts := 20  ; 设置最大尝试次数，避免无限循环
+        attemptCount := 0
+
+        while (attemptCount < maxAttempts) {
+            if (FindText(&X := 'wait', &Y := 3, 0, 0, 0, 0, 0, 0, build)) {
+                ; 找到build按钮，点击它
+                FindText().Click(X, Y, "L")
+                attemptCount++
+                Sleep(10)  ; 短暂等待，让界面有时间响应
+            } else {
+                ; 找不到build按钮，说明已经成功取消，退出循环
+                break
+            }
         }
-        loop 10 {
-            Click 2
-            Sleep(5)
+
+        ; 如果超过最大尝试次数仍未成功，作为备用方案执行原来的点击逻辑
+        if (attemptCount >= maxAttempts) {
+            loop 5 {  ; 减少重复点击次数，因为前面已经尝试过多次
+                Click 2
+                Sleep(10)
+            }
         }
     }
     isRunning := false
